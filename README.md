@@ -1,2 +1,2 @@
-# Thesis
-Framework for efficient model-agnostic learners
+# Framework for efficient model-agnostic learners (EMAL)
+A framework to create a meta-learning model that is guided using superposition, self-distillation and curiosity with the goal of having a compressed model.

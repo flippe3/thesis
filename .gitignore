@@ -1,0 +1,7 @@
+experiments/meta_learning/data
+experiments/meta_learning/trained
+experiments/knowledge_distillation_data
+**/__pycache__/
+**/data/
+wandb
+*.bin
