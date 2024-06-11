@@ -14,7 +14,7 @@ os.environ["CUDA_VISIBLE_DEVICES"]="0"
 torch.manual_seed(42)
 
 config = {
-    'NAME': 'resnet110-cifar10',
+    'NAME': 'resnet110-imagenet',
     'SAVE': True,
     'SAVE_DIR': "./",
     'BATCH_SIZE': 64,
@@ -30,13 +30,13 @@ run = wandb.init(
   dir="../../wandb",
   name = config['NAME'],
   config=config,
-  tags=["cifar10"]
+  tags=["imagenet"]
 )
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using: {device}")
 
-model = model_dict['resnet110'](num_classes=10)
+model = model_dict['resnet110'](num_classes=1000)
 
 model.to(device)
 
@@ -51,8 +51,8 @@ test_transform = transforms.Compose([
     transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761)),
 ])
 
-train_dataset = torchvision.datasets.CIFAR10(root='data', train=True, download=True, transform=train_transform)
-test_dataset = torchvision.datasets.CIFAR10(root='data', train=False, download=True, transform=test_transform)
+train_dataset = torchvision.datasets.ImageNet(root='data', train=True, download=True, transform=train_transform)
+test_dataset = torchvision.datasets.ImageNet(root='data', train=False, download=True, transform=test_transform)
 train_dataset, val_dataset = random_split(train_dataset, [45000, 5000])
 
 train_loader = DataLoader(train_dataset, batch_size=config['BATCH_SIZE'], shuffle=True)
@@ -146,4 +146,4 @@ print(f"Test loss: {test_loss} - Test Acc: {test_acc} - Test F1: {test_f1}")
 wandb.log({'test_loss': test_loss, 'test_acc': test_acc, 'test_f1': test_f1})
 
 if config['SAVE']:
-    torch.save(model.state_dict(), config['SAVE_DIR'] + config['NAME'])
+    torch.save(model.state_dict(), config['SAVE_DIR'] + config['NAME'] + ".bin")
