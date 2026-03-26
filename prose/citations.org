@@ -1,0 +1,11 @@
+** Modern topics of interest
+- Privacy concerns: https://arxiv.org/html/2406.00249v1
+
+** Non-modern critiques:
+-
+
+** Schmidhuber current Meta-Learning thoughts:
+- https://arxiv.org/html/2312.00276v3
+-
+
+- Self-referential weight matrix: https://arxiv.org/pdf/2202.05780

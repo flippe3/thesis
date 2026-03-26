@@ -5,3 +5,4 @@ experiments/knowledge_distillation_data
 **/data/
 wandb
 *.bin
+*.png
